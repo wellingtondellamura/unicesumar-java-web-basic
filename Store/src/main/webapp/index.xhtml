@@ -1,0 +1,39 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="./templates/mainTemplate.xhtml"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+    <ui:define name="title">Lista de Usuários</ui:define>
+
+    <ui:define name="content">
+        <p:panel>
+
+            <h:form>
+                <p:commandButton action="#{portal.register()}" value="Novo Usuário" styleClass="ui-button-info"
+                                 ajax="false"/>
+            </h:form>
+
+            <p:dataTable value="#{portal.allUsers}" var="user" rowKey="#{user.id}"
+                         lazy="false"
+                         emptyMessage="Nenhum usuário encontrado" paginator="true">
+                <p:column headerText="id">
+                    #{user.id}
+                </p:column>
+                <p:column headerText="nome">
+                    #{user.name}
+                </p:column>
+                <p:column headerText="email">
+                    #{user.email}
+                </p:column>
+                <p:column headerText="tipo">
+                    #{user.userType}
+                </p:column>
+            </p:dataTable>
+        </p:panel>
+
+    </ui:define>
+
+</ui:composition>
